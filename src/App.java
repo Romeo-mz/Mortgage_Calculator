@@ -14,12 +14,19 @@ public class App {
 
         System.out.print("Period (Years) : ");
         int years = scanner.nextInt();
-
+        
         NumberFormat currency = NumberFormat.getCurrencyInstance(new Locale("en","US"));
 
-        float percentFormater = interest / 100;
+        final int MONTH = 12;
+        double percentFormater = interest / 100; // Divie by 100 to have percentage
+
+        int totalMonth = years / 12;
+
+        double monthlyInterest = percentFormater / MONTH ; 
+
+        double interestN = Math.pow(1 + percentFormater, totalMonth);
         
-        float result = principal * percentFormater * years;
+        double result = principal * (monthlyInterest * interestN) / interestN - 1;
 
         System.out.print("Mortgage: ");
         System.out.println(currency.format(result));
